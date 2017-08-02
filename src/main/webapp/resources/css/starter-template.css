@@ -1,0 +1,92 @@
+.logged{
+	color: #FA8744  ; 
+}
+
+
+body {
+    
+}
+
+.starter-template {
+    padding-top: 50px  ;
+    text-align: center;
+    color: #ce5c00 ; 
+}
+
+
+.jumbotron{
+	margin-top: 40px; 
+}
+
+.subtitle{
+	color: red ; 
+}
+
+input[type="submit"]{
+	float: right;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: black;
+  font-size: 19px;
+ 
+  text-decoration: none;
+  
+}
+
+
+.hrozeil{
+	text-align: center;
+}
+
+.styleOrange{
+	color: #888a85 ;
+}
+
+.row .col-sm-4 {
+	 border-radius: 15px;
+    background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;
+    color: #888a85;
+}
+
+
+
+input[type="submit"] {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 8.5px 15px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 18px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+input[type="submit"]:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+input[type="submit"]:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+   
+   .foo{
+   text-align: center;
+   font-size: 18px ; 
+   }

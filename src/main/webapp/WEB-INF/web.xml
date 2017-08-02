@@ -1,0 +1,35 @@
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+	   <!-- File(s) appended to a request for a URL that is not mapped to a 
+        web component -->
+    <welcome-file-list>
+        <welcome-file>output.jsf</welcome-file>
+    </welcome-file-list>
+
+  <display-name>Archetype Created Web Application</display-name>
+      <servlet>
+      <servlet-name>FacesServlet</servlet-name>
+      <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+      <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>FacesServlet</servlet-name>
+      <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>FacesServlet</servlet-name>
+      <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    
+          <context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>cupertino</param-value>
+	</context-param>
+	
+
+
+
+    
+</web-app>

@@ -1,0 +1,150 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <title>JSF 2 + Spring 4 Integration Example</title>
+    </h:head>
+    <h:body>
+       <h1>JSF 2 + Spring 4 Integration Example</h1>
+  <style>
+  *{
+  font-family: helvetica ; 
+  }
+  
+  
+  .order-table{
+	border-collapse:collapse;
+}
+
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+
+  </style>
+   
+   
+
+ 	<h:form>
+ 	
+ 	
+ 	
+    <p:dataTable id="checkboxDT" var="car" value="#{studentBean.student}" selection="#{studentBean.selectedCars}" rowKey="#{car.id}"
+    
+    				emptyMessage="Empty..." editable="true" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="25,50,100"
+					rows="5"
+    			 	draggableRows="true"
+    
+    >
+        <f:facet name="header">
+            Single Column Sort
+        </f:facet>
+       <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+       
+       
+               <p:column headerText="ID" sortBy="#{car.id}" filterMatchMode="contains" filterBy="#{car.id}" > 
+            <h:outputText value="#{car.id}" />
+        </p:column>
+         <p:column headerText="E-MAIL" sortBy="#{car.email}" filterMatchMode="contains" filterBy="#{car.email}" > 
+            <h:outputText value="#{car.email}" />
+        </p:column>
+        
+         <p:column headerText="FIRSTNAME" sortBy="#{car.fn}" filterMatchMode="contains" filterBy="#{car.fn}" > 
+            <h:outputText value="#{car.fn}" />
+        </p:column>
+        
+           <p:column headerText="LASTNAME" sortBy="#{car.ln}" filterMatchMode="contains" filterBy="#{car.ln}" > 
+            <h:outputText value="#{car.ln}" />
+        </p:column>
+        
+         <p:column headerText="PHONE" sortBy="#{car.phone}" filterMatchMode="contains" filterBy="#{car.phone}" > 
+            <h:outputText value="#{car.phone}" />
+        </p:column>
+        
+          <p:column headerText="NATIONALITY" sortBy="#{car.email}" filterMatchMode="contains" filterBy="#{car.email}" > 
+            <h:outputText value="#{car.nationality}" />
+        </p:column>
+        
+        
+        	  <p:column>
+            <f:facet name="header">
+                <h:outputText value="delete" />
+            </f:facet>
+         
+         	<p:commandLink value="Delete" action="#{studentBean.remove(car.id)}" icon="ui-icon-trash" actionListener="#{studentBean.showMessage}"
+         			
+         			styleClass="ui-icon ui-icon-trash"
+         			
+         		 >
+         			<p:confirm header="Confirmation" message="Are you sure for delete this entity ?" icon="ui-icon-alert" />
+         	</p:commandLink> 
+         	
+         	 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+     	
+        </p:column> 
+        
+        
+
+		  <p:column>
+            <f:facet name="header">
+                <h:outputText value="Update" />
+            </f:facet>
+         
+         	<p:commandLink value="Update" action="#{studentBean.remove(car.id)}" icon="ui-icon-trash"  tyleClass="ui-icon ui-icon-trash">
+         			<p:confirm header="Confirmation" message="Are you sure for delete #{car.fn} with id ?" icon="ui-icon-alert" />
+         	</p:commandLink> 
+         	 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+        </p:column> 
+        <f:facet name="footer">
+            <p:commandButton process="checkboxDT" icon="ui-icon-search" value="delete list"  actionListener="#{studentBean.buttonAction}" action="#{studentBean.redirect}"/>
+        </f:facet>
+    </p:dataTable>
+    
+    
+    
+     <p:dialog header="Selected Cars" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="200">
+        <p:outputPanel id="multiCarDetail" style="text-align:center;">
+            <ui:repeat value="#{studentBean.selectedCars}" var="car">
+                <h:outputText value="#{car.id} - #{car.phone}" style="display:block"/>
+            </ui:repeat>
+        </p:outputPanel>
+    </p:dialog>
+    
+</h:form>  
+
+
+
+
+    
+
+    </h:body>
+</html>
+
+
+

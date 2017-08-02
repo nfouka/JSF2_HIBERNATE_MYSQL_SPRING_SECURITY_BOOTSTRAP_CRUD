@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      
+      
+    <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">  
+	
+      
+  <ui:composition template="/WEB-INF/include/template.xhtml">
+    <ui:define name="head">
+        <title>JSF/Spring-Hibernate MySQL Bootstrap</title>
+        <!-- Custom styles for this template -->
+       
+        <h:outputStylesheet name="css/starter-template.css"/>
+
+    </ui:define>
+    <ui:define name="body">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">JSF/Spring-Hibernate MySQL Bootstrap</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Application Sercure with JSF2 ,Spring Security / Hibernate </h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br/> All you get is this text and a mostly barebones HTML document.</p>
+        <button type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon" aria-hidden="true"></span> Star
+        </button>
+      </div>
+      
+      
+    username |  <h:outputLabel value="${dataScrollerBean.logger}" styleClass="styleOrange"/> 
+    
+    
+      <form action="${request.contextPath}/appLogout" method="POST"  class="lagout">
+        <input type="submit" value="Logout"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>		
+      </form> 
+      
+       <h3>Spring 4 Security  + JSF 2 + PrimeFaces 5  Integration Example</h3>
+      
+		
+		
+<h:form>
+    <p:dataTable id="checkboxDT" var="car" value="#{dataScrollerBean.list()}"  rowKey="#{car.id}"
+    
+    				emptyMessage="Empty..." editable="true" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,25,50,100"
+					rows="20"
+    			 	draggableRows="true"
+    
+    >
+        <f:facet name="header">
+            Single Column Sort
+        </f:facet>
+       <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+       
+       
+               <p:column headerText="ID" sortBy="#{car.id}" filterMatchMode="contains" filterBy="#{car.id}" > 
+            <h:outputText value="#{car.id}" />
+        </p:column>
+         <p:column headerText="E-MAIL" sortBy="#{car.email}" filterMatchMode="contains" filterBy="#{car.email}" > 
+            <h:outputText value="#{car.email}" />
+        </p:column>
+        
+         <p:column headerText="FIRSTNAME" sortBy="#{car.fn}" filterMatchMode="contains" filterBy="#{car.fn}" > 
+            <h:outputText value="#{car.fn}" />
+        </p:column>
+        
+           <p:column headerText="LASTNAME" sortBy="#{car.ln}" filterMatchMode="contains" filterBy="#{car.ln}" > 
+            <h:outputText value="#{car.ln}" />
+        </p:column>
+        
+         <p:column headerText="PHONE" sortBy="#{car.phone}" filterMatchMode="contains" filterBy="#{car.phone}" > 
+            <h:outputText value="#{car.phone}" />
+        </p:column>
+        
+          <p:column headerText="NATIONALITY" sortBy="#{car.email}" filterMatchMode="contains" filterBy="#{car.email}" > 
+            <h:outputText value="#{car.nationality}" />
+        </p:column>
+        
+        
+        	  <p:column>
+            <f:facet name="header">
+                <h:outputText value="delete" />
+            </f:facet>
+         
+         	<p:commandLink value="Delete" action="#{studentBean.remove(car.id)}" icon="ui-icon-trash" actionListener="#{studentBean.showMessage}"
+         			
+         			styleClass="ui-icon ui-icon-trash"
+         			
+         		 >
+         			<p:confirm header="Confirmation" message="Are you sure for delete this entity ?" icon="ui-icon-alert" />
+         	</p:commandLink> 
+         	
+         	 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+     	
+        </p:column> 
+        
+		  <p:column>
+            <f:facet name="header">
+                <h:outputText value="Update" />
+            </f:facet>
+         
+         	<p:commandLink value="Update" action="#{studentBean.remove(car.id)}" icon="ui-icon-trash"  tyleClass="ui-icon ui-icon-trash">
+         			<p:confirm header="Confirmation" message="Are you sure for delete #{car.fn} with id ?" icon="ui-icon-alert" />
+         	</p:commandLink> 
+         	 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+        </p:column> 
+        <f:facet name="footer">
+            <p:commandButton process="checkboxDT" icon="ui-icon-search" value="delete list"  actionListener="#{studentBean.buttonAction}" action="#{studentBean.redirect}"/>
+        </f:facet>
+    </p:dataTable>
+    
+    
+</h:form>   
+      
+      
+
+    </div><!-- /.container -->
+
+    </ui:define>
+  </ui:composition>
+        
+</html>
+
