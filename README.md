@@ -24,5 +24,49 @@ pass : nfouka
 user : nfouka
 ```
 
+
+
+# Create user table and Role 
+
+```js
+
+CREATE TABLE `users` (
+  `username` varchar(20) NOT NULL DEFAULT '',
+  `password` varchar(20) NOT NULL DEFAULT '',
+  `enabled` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
+('nfouka', 'nfouka', 1);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+--
+-- Table structure for table `Roles`
+--
+
+CREATE TABLE `Roles` (
+  `username` varchar(20) NOT NULL DEFAULT '',
+  `role` varchar(20) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Roles`
+--
+
+INSERT INTO `Roles` (`username`, `role`) VALUES
+('nfouka', 'ROLE_ADMIN');
+
+```
+
+
+
 demo 
 <img src="https://raw.githubusercontent.com/nfouka/JSF2_HIBERNATE_MYSQL_SPRING_SECURITY_BOOTSTRAP_CRUD/master/logo.png" />
