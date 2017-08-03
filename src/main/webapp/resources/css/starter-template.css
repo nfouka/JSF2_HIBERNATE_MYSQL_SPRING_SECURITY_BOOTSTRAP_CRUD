@@ -10,7 +10,7 @@ body {
 .starter-template {
     padding-top: 50px  ;
     text-align: center;
-    color: #ce5c00 ; 
+    color: red ; 
 }
 
 
@@ -89,4 +89,9 @@ input[type="submit"]:active {
    .foo{
    text-align: center;
    font-size: 18px ; 
+   }
+
+
+   .lagout{
+    float: right; 
    }

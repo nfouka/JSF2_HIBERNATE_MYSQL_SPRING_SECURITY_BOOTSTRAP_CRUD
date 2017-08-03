@@ -38,7 +38,18 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li>Username :<h:outputLabel value="${studentBean.logger}" styleClass="styleOrange"/> </li>
+            
+                
+            
+            
           </ul>
+
+
+            <form action="${request.contextPath}/appLogout" method="POST"  class="lagout">
+                        <input type="submit" value="Logout"/>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>     
+            </form> 
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -90,13 +101,9 @@
      <hr class="hrozeil"></hr>
           
       
-    Username :<h:outputLabel value="${studentBean.logger}" styleClass="styleOrange"/> 
     
     
-      <form action="${request.contextPath}/appLogout" method="POST"  class="lagout">
-        <input type="submit" value="Logout"/>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>		
-      </form> 
+    
       
        <h3>Spring 4 Security  + JSF 2 + PrimeFaces 5  Integration Example</h3>
 

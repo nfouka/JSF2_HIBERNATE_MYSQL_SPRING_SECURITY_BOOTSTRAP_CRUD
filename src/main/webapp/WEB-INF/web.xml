@@ -23,9 +23,9 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
       <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
     
-          <context-param>
+  <context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>cupertino</param-value>
+		<param-value>bootstrap</param-value>
 	</context-param>
 	
 
