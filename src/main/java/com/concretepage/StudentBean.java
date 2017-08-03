@@ -69,6 +69,10 @@ public class StudentBean {
 		return studentImpDAO.list() ; 
 	}
 	
+		public Boolean loadData() {
+		   return false   ; 
+		}
+
 	public void redirect() throws IOException{
 		
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

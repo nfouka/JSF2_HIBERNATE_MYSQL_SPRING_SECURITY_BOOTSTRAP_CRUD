@@ -38,9 +38,8 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li>Username :<h:outputLabel value="${studentBean.logger}" styleClass="styleOrange"/> </li>
-            
-                
+            Username :<h:outputLabel value="${studentBean.logger}" styleClass="styleOrange"/>
+ 
             
             
           </ul>
@@ -204,28 +203,14 @@
 </h:form>  
      
      
-    
-    <p:growl id="messages" showDetail="true" />
+
+
+<h:outputText value="Charts - Zoom A specific part on Cartesian Charts can be zoomed using mouse drag. " />
+
+<p:chart type="line" model="#{chartView.zoomModel}" style="height:300px;" widgetVar="chart"/>
  
-<p:gmap id="gmap" center="36.890257,30.707417" zoom="13" type="HYBRID" style="width:100%;height:400px"
-    model="#{addMarkersView.emptyModel}" onPointClick="handlePointClick(event);" widgetVar="map" />
- 
-<p:dialog widgetVar="dlg" showEffect="fade">
-    <h:form prependId="false">
-        <h:panelGrid columns="2">
-            <h:outputLabel for="title" value="Title:" />
-            <p:inputText id="title" value="#{addMarkersView.title}" />
- 
-            <f:facet name="footer">
-                <p:commandButton value="Add" actionListener="#{addMarkersView.addMarker}" update=":messages" oncomplete="markerAddComplete()" />
-                <p:commandButton value="Cancel" onclick="return cancel()" />
-            </f:facet>
-        </h:panelGrid>
- 
-        <h:inputHidden id="lat" value="#{addMarkersView.lat}" />
-        <h:inputHidden id="lng" value="#{addMarkersView.lng}" />
-    </h:form>
-</p:dialog>
+<p:commandButton type="button" value="Reset" icon="ui-icon-cancel" onclick="PF('chart').resetZoom()"/>
+
  
 <script type="text/javascript">
 

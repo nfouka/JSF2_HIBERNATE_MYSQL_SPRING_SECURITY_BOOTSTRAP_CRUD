@@ -19,7 +19,7 @@ body {
 }
 
 .subtitle{
-	color: red ; 
+	color: green  ; 
 }
 
 input[type="submit"]{
@@ -93,5 +93,8 @@ input[type="submit"]:active {
 
 
    .lagout{
-    float: right; 
+   }
+
+   .login_ {
+    float: left ; 
    }
