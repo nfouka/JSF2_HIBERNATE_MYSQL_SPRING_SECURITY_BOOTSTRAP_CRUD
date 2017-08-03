@@ -3,9 +3,6 @@ JSF2_HIBERNATE_MYSQL_SPRING_SECURITY_BOOTSTRAP_CRUD
 
 
 
-deom 
-<img src="https://raw.githubusercontent.com/nfouka/JSF2_HIBERNATE_MYSQL_SPRING_SECURITY_BOOTSTRAP_CRUD/master/logo.png" />
-
 # How to deploy this project ? 
 ----------------
 
@@ -15,7 +12,7 @@ start tomcat 8
 compile project 
 mvn clean install ; 
 deploy with tomcat
-cp -r target/app.war /home/nadir/Bureau/apache-tomcat-8.0.44/webapps ;
+cp -r target/app.war ~/apache-tomcat-8.0.44/webapps ;
 
 ```
 # Result 
@@ -26,3 +23,6 @@ secure
 pass : nfouka
 user : nfouka
 ```
+
+demo 
+<img src="https://raw.githubusercontent.com/nfouka/JSF2_HIBERNATE_MYSQL_SPRING_SECURITY_BOOTSTRAP_CRUD/master/logo.png" />
