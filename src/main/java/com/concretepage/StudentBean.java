@@ -140,7 +140,7 @@ public class StudentBean {
 	public void init() {
 	
 		
-		for(int i=0 ; i< 10 ; i++) {
+		for(int i=0 ; i< 2; i++) {
 			Student st2 = new Student("Amine "+ Math.random(), "Ahmed "+ Math.random(), "nadir.fouka@"+Math.random()+".com", "+213 85 96 7850 80") ; 
 						studentImpDAO.persist(st2);
 			}

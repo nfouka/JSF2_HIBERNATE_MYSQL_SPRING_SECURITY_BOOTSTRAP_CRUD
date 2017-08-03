@@ -10,7 +10,7 @@ body {
 .starter-template {
     padding-top: 50px  ;
     text-align: center;
-    color: red ; 
+    color: green ; 
 }
 
 
@@ -98,3 +98,11 @@ input[type="submit"]:active {
    .login_ {
     float: left ; 
    }
+   
+   
+   
+   .carousel-content {
+    color:black;
+    display:flex;
+    align-items:center;
+}
