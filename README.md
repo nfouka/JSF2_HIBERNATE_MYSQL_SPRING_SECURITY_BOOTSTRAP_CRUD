@@ -9,7 +9,7 @@ JSF2_HIBERNATE_MYSQL_SPRING_SECURITY_BOOTSTRAP_CRUD
 ```js
 start tomcat 8 
 ./bin/start.sh 
-compile project 
+compile project + insert data (random see init() ) in mysql db
 mvn clean install ; 
 deploy with tomcat
 cp -r target/app.war ~/apache-tomcat-8.0.44/webapps ;
