@@ -38,7 +38,8 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            Username :<h:outputLabel value="${studentBean.logger}" styleClass="styleOrange"/>
+            <li><a href="#contact"></a></li>
+            <li><h:outputLabel value="Profile ${studentBean.logger}" styleClass="styleOrange"/></li>
  
             
             
@@ -75,7 +76,7 @@
     
         <div class="col-sm-4" >
 				
-<div id="carousel-example" class="carousel slide" data-ride="carousel">
+<div id="carousel-example1" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="row">
         <div class="col-xs-offset-3 col-xs-6">
@@ -131,7 +132,7 @@
         
         <div class="col-sm-4">
 
-<div id="carousel-example" class="carousel slide" data-ride="carousel">
+<div id="carousel-example2" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="row">
         <div class="col-xs-offset-3 col-xs-6">
@@ -183,7 +184,7 @@
  
         </div>
         <div class="col-sm-4">
-<div id="carousel-example" class="carousel slide" data-ride="carousel">
+<div id="carousel-example3" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="row">
         <div class="col-xs-offset-3 col-xs-6">
@@ -252,15 +253,15 @@
     
                     emptyMessage="Empty..." editable="true" paginator="true"
                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    rowsPerPageTemplate="25,50,100"
-                    rows="20"
+                    rowsPerPageTemplate="5,10,25,50,100"
+                    rows="5"
                     draggableRows="true"
     
     >
         <f:facet name="header">
             Single Column Sort
         </f:facet>
-       <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+      
        
        
                <p:column headerText="ID" sortBy="#{car.id}" filterMatchMode="contains" filterBy="#{car.id}" > 
@@ -342,7 +343,7 @@
      
 
 
-<h:outputText value="Charts - Zoom A specific part on Cartesian Charts can be zoomed using mouse drag. " />
+<h:outputText value="Charts - Zoom A specific part on Cartesian Charts can be zoomed using mouse drag. " styleClass="title_chart" />
 
 <p:chart type="line" model="#{chartView.zoomModel}" style="height:300px;" widgetVar="chart"/>
  
@@ -390,7 +391,7 @@
      
      <hr></hr>
      
-     <div class="foo">Developed by cosiplus 2017</div>
+     <div class="foo">Developed by Nadir Fouka 2017</div>
      
      <div class="container-fluid"> 
       <div class="row">

@@ -5,7 +5,7 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	   <!-- File(s) appended to a request for a URL that is not mapped to a 
         web component -->
     <welcome-file-list>
-        <welcome-file>output.jsf</welcome-file>
+        <welcome-file>output.do</welcome-file>
     </welcome-file-list>
 
   <display-name>Archetype Created Web Application</display-name>
@@ -20,7 +20,7 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     </servlet-mapping>
     <servlet-mapping>
       <servlet-name>FacesServlet</servlet-name>
-      <url-pattern>*.jsf</url-pattern>
+      <url-pattern>*.do</url-pattern>
     </servlet-mapping>
     
   <context-param>
@@ -29,7 +29,10 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	</context-param>
 	
 
-
+<context-param>
+    <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+    <param-value>true</param-value>
+</context-param>
 
     
 </web-app>

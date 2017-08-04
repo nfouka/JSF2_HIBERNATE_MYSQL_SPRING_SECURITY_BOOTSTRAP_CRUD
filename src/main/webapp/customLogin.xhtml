@@ -158,7 +158,7 @@
      
      <hr></hr>
      
-     <div class="foo">Developed by cosiplus 2017</div>
+     <div class="foo">Developed by nadir.fouka@gmail.com 2017</div>
      
      <div class="container-fluid"> 
       <div class="row">
@@ -169,7 +169,9 @@
  				<font color="red">
 		     			<h:outputLabel value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
                 </font>
-		<form action="${request.contextPath}/appLogin" method="POST" class='login_'>
+                
+                
+		<form action="${request.contextPath}/appLogin" method="POST" class='form-inline'>
 			<h:outputLabel value="Enter UserName:" />
 			<input type="text" name="app_username"/><br/><br/>
 			<h:outputLabel value="Enter Password:" />
@@ -177,6 +179,8 @@
 			<input type="submit" value="Login"/>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>			
 		</form>
+		
+		<h:link value="New user" outcome="add" /> | <h:link value="forgotten password ?" outcome="add" />
 
 
 

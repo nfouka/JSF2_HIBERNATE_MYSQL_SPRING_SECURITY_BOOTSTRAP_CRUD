@@ -11,37 +11,38 @@
     </h:head>
     <h:body>
 
-    	<h1>JSF 2 dataTable example</h1>
+    	<h1>Add new User Authentification</h1>
 
-    		<h:dataTable value="#{order.student}" var="o"
-    			styleClass="order-table"
-    			headerClass="order-table-header"
-    			rowClasses="order-table-odd-row,order-table-even-row"
-    		>
 
-    			<h:column>
-    				<!-- column header -->
-    				<f:facet name="header">Order Id</f:facet>
-    				<!-- row record -->
-    				#{o.id}
-    			</h:column>
-
-    			<h:column>
-    				<f:facet name="header">lastName</f:facet>
-    				#{o.lastName}
-    			</h:column>
-
-    			<h:column>
-    				<f:facet name="header">email</f:facet>
-    				#{o.email}
-    			</h:column>
-
-    			<h:column>
-    				<f:facet name="header">phone</f:facet>
-    				#{o.phone}
-    			</h:column>
-
-    		</h:dataTable>
-
-    </h:body>
+ 
+    <h:form>
+        <h3>Adding Form Components</h3>
+        <h:panelGrid columns="3">
+            <h:outputLabel for="username">users username:</h:outputLabel>
+            <h:inputText value="#{user.username}" id="username"></h:inputText>
+            <br />
+            <br />
+            
+            
+            <h:outputLabel for="password">users password:</h:outputLabel>
+            <h:inputText value="#{user.password}" id="password"></h:inputText>
+            <br />
+            
+            
+           <h:outputLabel for="mail">users mail:</h:outputLabel>
+            <h:inputText value="#{user.email}" id="email"></h:inputText>
+            <br />
+            
+            
+            <h:outputLabel for="phone">users phone:</h:outputLabel>
+            <h:inputText value="#{user.phone}" id="phone"></h:inputText>
+            <br />
+            
+            
+ 
+            <h:commandButton action="${studentBean.addnewUser(user)}" value="Submit"></h:commandButton>
+ 
+        </h:panelGrid>
+    </h:form>
+</h:body>
 </html>

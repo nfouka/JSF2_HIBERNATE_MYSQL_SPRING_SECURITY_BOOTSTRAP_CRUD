@@ -1,4 +1,7 @@
-    setCarouselHeight('#carousel-example');
+       
+    setCarouselHeight('#carousel-example2');
+    setCarouselHeight('#carousel-example3');
+    setCarouselHeight('#carousel-example1'); 
 
     function setCarouselHeight(id)
     {
@@ -18,3 +21,7 @@
             $(this).css('height',max+'px');
         });
     }
+    
+
+
+  

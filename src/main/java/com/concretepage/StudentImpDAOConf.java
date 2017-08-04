@@ -1,6 +1,5 @@
 package com.concretepage;
 
-import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
