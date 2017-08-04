@@ -43,9 +43,9 @@ public class StudentImpDAO{
 	    public void persist(Student student) {
 			Session st = sessionFactory.getCurrentSession() ; 
 			Nationality n1 = new Nationality("ALGERIAN", student) ; 
-			Nationality n2 = new Nationality("USA", student) ; 
+			Nationality n2 = new Nationality("FRANCE", student) ; 
 			Nationality n3 = new Nationality("SAUDIA", student) ; 
-			Nationality n4 = new Nationality("QATAR", student) ; 
+			Nationality n4 = new Nationality("USA", student) ; 
 			st.persist(student);
 			st.persist(n1); 
 			st.persist(n2);
