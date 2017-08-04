@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -16,8 +15,13 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.concretepage.model.Car;
 import com.concretepage.model.Nationality;
+import com.concretepage.model.Roles;
 import com.concretepage.model.Student;
+import com.concretepage.model.User;
+
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,6 +39,10 @@ public class StudentBean {
 	public StudentService userService;
 	@Autowired
 	public StudentImpDAO studentImpDAO ; 
+	@Autowired
+	public RolesImplDAO rolesImplDAO ; 
+	@Autowired
+	public UserImpDAO userImpDAO ; 
 
 	@Autowired
 	public Nationality nationality ; 
@@ -140,10 +148,17 @@ public class StudentBean {
 	public void init() {
 	
 		
-		for(int i=0 ; i< 2; i++) {
-			Student st2 = new Student("Amine "+ Math.random(), "Ahmed "+ Math.random(), "nadir.fouka@"+Math.random()+".com", "+213 85 96 7850 80") ; 
-						studentImpDAO.persist(st2);
+		for(int i=0 ; i< 200 ; i++) {
+			Student st2 = new Student(
+					new SessionIdentifierGenerator().nextSessionId() , 
+					new SessionIdentifierGenerator().nextSessionId() , 
+					new SessionIdentifierGenerator().nextSessionId()+ "@gmail.com",  "+33 85 96 7850 80") ; 
+			
+					studentImpDAO.persist(st2);
 			}
+		
+		rolesImplDAO.persist(new Roles("nfouka", "ROLE_ADMIN"));
+		userImpDAO.persist(new User("nfouka", "nfouka", "nadir.fouka@gmail.com", "+3368556896452", true  ));
 		student = studentImpDAO.list() ; 
 		
 	}
@@ -195,10 +210,19 @@ public class StudentBean {
 	    }
 	     
 	    public void addMessage(String summary, String detail) {
-	        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
 	        
-	        
-	        
+	    	
+	    	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
 	        FacesContext.getCurrentInstance().addMessage(null, message);
+	    }
+	    
+	    
+	    
+	    public void addnewUser(User user) {
+	    	
+	    	user.setEnabled(false);
+	    	userImpDAO.persist(user);
+	    	
+	    	System.err.println(user.toString());
 	    }
 }
