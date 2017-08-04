@@ -26,24 +26,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		antMatchers("/secure/**").access("hasRole('ROLE_ADMIN')").
 		
 		and().formLogin().  //login configuration
-        loginPage("/customLogin.jsf").
+        loginPage("/customLogin.do").
         loginProcessingUrl("/appLogin").
         usernameParameter("app_username").
         passwordParameter("app_password").
-        defaultSuccessUrl("/secure/student.jsf").	
+        defaultSuccessUrl("/secure/student.do").	
 		and().logout().    //logout configuration
 		logoutUrl("/appLogout"). 
-		logoutSuccessUrl("/customLogin.jsf");
+		logoutSuccessUrl("/customLogin.do");
 
 	} 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		
 		
-		auth.inMemoryAuthentication().withUser("nfouka").password("lonelyness").roles("ADMIN");
+		//auth.inMemoryAuthentication().withUser("nfouka").password("lonelyness").roles("ADMIN");
 		
 		
-		/* 
+	
 		final String findUserQuery = "select username,password,enabled "
 				+ "from users " + "where username = ?";
 		final String findRoles = "select username,role " + "from Roles "
@@ -52,9 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication().dataSource(ds)
 				.usersByUsernameQuery(findUserQuery)
 				.authoritiesByUsernameQuery(findRoles);
-				
-				*/
-				
+
 		
 	}	
 }  
