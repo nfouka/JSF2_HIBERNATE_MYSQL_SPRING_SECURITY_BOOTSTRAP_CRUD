@@ -114,6 +114,31 @@ public class StudentBean {
 		context.redirect(context.getRequestContextPath() + "/output.jsf" );
 	}
 	
+	public void validateUser(int id) throws IOException{
+		System.err.println("user has been removed stuent is " + id );
+		userImpDAO.delete(id);
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        FacesMessage msg = new FacesMessage("user Selected   id :", ""+id );
+        
+       
+		context.redirect(context.getRequestContextPath() + "/secure/student.do" );
+	}
+	
+	
+	
+
+	public void DeclineUser(int id) throws IOException{
+		System.err.println("user has been updated stuent is " + id );
+		userImpDAO.actvate(id);
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        FacesMessage msg = new FacesMessage("user Selected   id :", ""+id );
+        
+       
+		context.redirect(context.getRequestContextPath() + "/secure/student.do" );
+	}
+	
+	
+	
 	public String fetchStudent(){
 		name = userService.getStudent(id); 
 		
@@ -148,17 +173,21 @@ public class StudentBean {
 	public void init() {
 	
 		
-		for(int i=0 ; i< 200 ; i++) {
+		for(int i=0 ; i< 20 ; i++) {
 			Student st2 = new Student(
 					new SessionIdentifierGenerator().nextSessionId() , 
 					new SessionIdentifierGenerator().nextSessionId() , 
 					new SessionIdentifierGenerator().nextSessionId()+ "@gmail.com",  "+33 85 96 7850 80") ; 
 			
-					studentImpDAO.persist(st2);
-			}
+					// studentImpDAO.persist(st2);
+			
 		
 		rolesImplDAO.persist(new Roles("nfouka", "ROLE_ADMIN"));
-		userImpDAO.persist(new User("nfouka", "nfouka", "nadir.fouka@gmail.com", "+3368556896452", true  ));
+		userImpDAO.persist(new User( new SessionIdentifierGenerator().nextSessionId() , 
+							new SessionIdentifierGenerator().nextSessionId() , 
+							"nadir.fouka@gmail.com", "+3368556896452", false  ));
+		}
+		
 		student = studentImpDAO.list() ; 
 		
 	}
@@ -225,4 +254,14 @@ public class StudentBean {
 	    	
 	    	System.err.println(user.toString());
 	    }
+	    
+	    
+	    
+	    public List<User> listUser() {
+	    	
+	    	List<User> l = userImpDAO.list() ; 
+	    	return l ; 
+	    }
+	    
+	    
 }
