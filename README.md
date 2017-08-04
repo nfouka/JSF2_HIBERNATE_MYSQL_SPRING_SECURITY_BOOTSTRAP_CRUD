@@ -2,6 +2,14 @@
 JSF2_HIBERNATE_MYSQL_SPRING_SECURITY_BOOTSTRAP_CRUD
 
 
+# Require 
+
+```js
+maven 3.13.0-117-generic
+java 8 >= 
+```
+
+
 
 # How to deploy this project ? 
 ----------------
