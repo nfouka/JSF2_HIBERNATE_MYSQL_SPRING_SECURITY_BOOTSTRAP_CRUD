@@ -1,8 +1,14 @@
 package com.concretepage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,18 +16,20 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletContext;
+
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.concretepage.model.Car;
 import com.concretepage.model.Nationality;
 import com.concretepage.model.Roles;
 import com.concretepage.model.Student;
 import com.concretepage.model.User;
-
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,6 +42,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class StudentBean {
 	private String name;
 	private Integer id;
+	
 	
 	@Autowired
 	public StudentService userService;
@@ -52,9 +61,20 @@ public class StudentBean {
 	
 	private Student selectedCar;
 	private List<Student> student ;
+	private String fileUpload ; 
 	
 	
-    public Student getSelectedCar() {
+	
+	
+    public String getFileUpload() {
+		return fileUpload;
+	}
+
+	public void setFileUpload(String fileUpload) {
+		this.fileUpload = fileUpload;
+	}
+
+	public Student getSelectedCar() {
 		return selectedCar;
 	}
 
@@ -120,7 +140,6 @@ public class StudentBean {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         FacesMessage msg = new FacesMessage("user Selected   id :", ""+id );
         
-       
 		context.redirect(context.getRequestContextPath() + "/secure/student.do" );
 	}
 	
@@ -179,14 +198,19 @@ public class StudentBean {
 					new SessionIdentifierGenerator().nextSessionId() , 
 					new SessionIdentifierGenerator().nextSessionId()+ "@gmail.com",  "+33 85 96 7850 80") ; 
 			
-					// studentImpDAO.persist(st2);
+					 studentImpDAO.persist(st2);
 			
-		
+		/*
 		rolesImplDAO.persist(new Roles("nfouka", "ROLE_ADMIN"));
+		
 		userImpDAO.persist(new User( new SessionIdentifierGenerator().nextSessionId() , 
 							new SessionIdentifierGenerator().nextSessionId() , 
 							"nadir.fouka@gmail.com", "+3368556896452", false  ));
 		}
+		*/ 
+		}
+		rolesImplDAO.persist(new Roles("nfouka", "ROLE_ADMIN"));
+		userImpDAO.persist(new User("nfouka", "nfouka", "", "", true));
 		
 		student = studentImpDAO.list() ; 
 		
@@ -250,6 +274,7 @@ public class StudentBean {
 	    public void addnewUser(User user) {
 	    	
 	    	user.setEnabled(false);
+	    	user.setCv(fileUpload);
 	    	userImpDAO.persist(user);
 	    	
 	    	System.err.println(user.toString());
@@ -262,6 +287,65 @@ public class StudentBean {
 	    	List<User> l = userImpDAO.list() ; 
 	    	return l ; 
 	    }
+	    
+	    
+	    public void fileUpload(FileUploadEvent event) throws IOException {
+	        String path = FacesContext.getCurrentInstance().getExternalContext()
+	                .getRealPath("/");
+	        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMddHHmmss");
+	        String name = fmt.format(new Date())
+	                + event.getFile().getFileName().substring(
+	                      event.getFile().getFileName().lastIndexOf('.'));
+	        
+	        
+	        path = "/home/nadir/Bureau/apache-tomcat-8.0.44/webapps/app/" ; 
+	        File file = new File(path + "resources/demo/" + name);
+	        System.out.println(path + "resources/demo/" + name);
+	        fileUpload = path + "resources/demo/" + name ; 
+	        InputStream is = event.getFile().getInputstream();
+	        OutputStream out = new FileOutputStream(file);
+	        byte buf[] = new byte[1024];
+	        int len;
+	        while ((len = is.read(buf)) > 0)
+	            out.write(buf, 0, len);
+	        is.close();
+	        out.close();
+	    }
+
+	    
+	    private DefaultStreamedContent download;
+	    
+	    
+	    public void setDownload(DefaultStreamedContent download) {
+	        this.download = download;
+	    }
+
+	    public DefaultStreamedContent getDownload() throws Exception {
+	        System.out.println("GET = " + download.getName());
+	        return download;
+	    }
+
+	    public void prepDownload(String file1) throws Exception {
+	        File file = new File(file1);
+	        InputStream input = new FileInputStream(file);
+	        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+	        setDownload(new DefaultStreamedContent(input, externalContext.getMimeType(file.getName()), file.getName()));
+	        
+	    }
+	    
+	    
+	    private StreamedContent file;
+
+	    public void FileDownloadController(String cv) {        
+	        InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream(cv);
+	        file = new DefaultStreamedContent(stream, "application/pdf", "downloaded_optimus.jpg");
+	    }
+
+	    public StreamedContent getFile() {
+	        return file;
+	    }  
+	    
+	    
 	    
 	    
 }
