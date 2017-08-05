@@ -241,8 +241,134 @@
     
     
     
+     <h3>New user Student admin view </h3>
+    
+    
+        <h:form>
+    
+    
+    
+    <p:dataTable id="checkboxDT" var="car" value="#{studentBean.listUser()}"  rowKey="#{car.id}"
+    
+                    emptyMessage="Empty..." editable="true" paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="10,25,50,100"
+                    rows="10"
+                    draggableRows="true"
+    
+    >
+        <f:facet name="header">
+           List of User in database with activation = false
+        </f:facet>
       
-       <h3>Spring 4 Security  + JSF 2 + PrimeFaces 5  Integration Example</h3>
+       
+       
+        <p:column headerText="ID" sortBy="#{car.user_id}" filterMatchMode="contains" filterBy="#{car.user_id}" > 
+            <h:outputText value="#{car.user_id}" />
+        </p:column>
+         <p:column headerText="E-MAIL" sortBy="#{car.email}" filterMatchMode="contains" filterBy="#{car.email}" > 
+            <h:outputText value="#{car.email}" />
+        </p:column>
+        
+         <p:column headerText="password" sortBy="#{car.password}" filterMatchMode="contains" filterBy="#{car.fn}" > 
+            <h:outputText value="#{car.password}" />
+        </p:column>
+        
+        
+         <p:column headerText="PHONE" sortBy="#{car.phone}" filterMatchMode="contains" filterBy="#{car.phone}" > 
+            <h:outputText value="#{car.phone}" />
+        </p:column>
+        
+          <p:column headerText="username" sortBy="#{car.username}" filterMatchMode="contains" filterBy="#{car.email}" > 
+            <h:outputText value="#{car.username}" />
+        </p:column>
+        
+        
+        <p:column headerText="download" sortBy="#{car.cv}" filterMatchMode="contains" filterBy="#{car.cv}" > 
+
+			  <p:commandButton id="downloadLink" value="Download" ajax="false" 
+			  	actionListener="#{studentBean.prepDownload(car.cv)}">
+			    <p:fileDownload value="#{studentBean.download}" />
+			  </p:commandButton>
+
+
+        </p:column>
+        
+        
+        
+      <p:column>
+            <f:facet name="header">
+                <h:outputText value="Validate" />
+            </f:facet>
+         
+         
+         
+			  	<p:commandButton value="Decline" action="#{studentBean.validateUser(car.user_id)}" icon="fa fa-close" actionListener="#{studentBean.showMessage}"
+				
+						 type="link" styleClass="remove"
+				 >
+						<p:confirm header="Confirmation" message="Are you sure for delete this user ?" icon="ui-icon-alert" />
+				</p:commandButton>
+	
+            
+		     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>
+        
+        </p:column> 
+        
+        
+        
+        
+         <p:column>
+            <f:facet name="header">
+                <h:outputText value="Activate" />
+            </f:facet>
+         
+         
+         
+			  	<p:commandButton value="Activate" action="#{studentBean.DeclineUser(car.user_id)}" icon="fa fa-check-circle" actionListener="#{studentBean.showMessage}"
+				
+						 type="link" styleClass="zeb"
+				 >
+						<p:confirm header="Confirmation" message="Are you sure for activate this user ?" icon="ui-icon-alert" />
+				</p:commandButton>
+	
+            
+		     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    </p:confirmDialog>
+        
+        </p:column> 
+        
+        
+        
+        
+        
+        
+        
+        </p:dataTable>
+        
+    
+</h:form>  
+
+
+
+update file 
+<h:form enctype="multipart/form-data">
+    <p:fileUpload 
+     fileUploadListener="#{studentBean.fileUpload}" 
+     multiple="true" dragDropSupport="true" label="choose" 
+     sizeLimit="100000" fileLimit="5" mode="advanced"
+    
+     />
+</h:form>
+
+
+      
+    <h3>List Student with Nationality </h3>
 
       
     <h:form>
@@ -288,7 +414,7 @@
         </p:column>
         
         
-              <p:column>
+        <p:column>
             <f:facet name="header">
                 <h:outputText value="delete" />
             </f:facet>
@@ -393,6 +519,15 @@
      
      <div class="foo">Developed by Nadir Fouka 2017</div>
      
+         <h:form enctype="multipart/form-data">
+    <p:growl id="messages" showDetail="true" />
+ 
+    <p:fileUpload value="#{fileUploadView.file}" mode="simple" skinSimple="true"/>
+ 
+    <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="true" />
+</h:form>
+
+     
      <div class="container-fluid"> 
       <div class="row">
         <div class="col-sm-4" >
@@ -427,6 +562,8 @@
     </ui:define>
     
     
+   
+
     
   </ui:composition>
   

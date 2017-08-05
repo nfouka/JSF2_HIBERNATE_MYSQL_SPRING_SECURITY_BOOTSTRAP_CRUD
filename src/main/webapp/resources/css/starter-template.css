@@ -69,3 +69,26 @@ body {
 	color: #706363 ; 
 	height: 50% ; 
 }
+
+
+.remove {
+	 background: #ed213d;
+  background-image: -webkit-linear-gradient(top, #ed213d, #ff788a);
+  background-image: -moz-linear-gradient(top, #ed213d, #ff788a);
+  background-image: -ms-linear-gradient(top, #ed213d, #ff788a);
+  background-image: -o-linear-gradient(top, #ed213d, #ff788a);
+  background-image: linear-gradient(to bottom, #ed213d, #ff788a);
+  font-family: Arial;
+  color: #ffffff;
+}
+
+
+
+.ui-datatable-header .ui-widget-header .ui-corner-top {
+	color: green ; 
+}
+
+
+.zeb {
+	color: red ; 
+}
