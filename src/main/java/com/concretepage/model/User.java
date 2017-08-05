@@ -37,9 +37,21 @@ public class User {
 	@Column(name = "enabled")
 	private Boolean enabled;
 	
+	@Column(name = "cv")
+	private String cv;
+	
+	
 	
 
 	
+	public String getCv() {
+		return cv;
+	}
+
+	public void setCv(String cv) {
+		this.cv = cv;
+	}
+
 	public User() {
 		super();
 	}
@@ -104,8 +116,10 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", phone="
-				+ phone + ", enabled=" + enabled + "]";
+				+ phone + ", enabled=" + enabled + ", cv=" + cv + "]";
 	}
+
+
 	
 
 }

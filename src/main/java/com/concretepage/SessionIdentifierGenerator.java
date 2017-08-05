@@ -10,7 +10,7 @@ public final class SessionIdentifierGenerator {
     private SecureRandom random = new SecureRandom();
 
     public String nextSessionId() {
-        return new BigInteger(130, random).toString(24);
+        return new BigInteger(80, random).toString(10);
     }
     
     

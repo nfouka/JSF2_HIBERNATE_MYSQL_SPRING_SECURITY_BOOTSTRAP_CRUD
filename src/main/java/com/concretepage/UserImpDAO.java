@@ -12,6 +12,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.concretepage.model.User;
 
@@ -67,7 +68,7 @@ public class UserImpDAO{
 	    
 		@Transactional
 	    public List<User> list() {
-	        String sql = "select user_id, email, enabled, password, phone, username from users where enabled = 0 ";
+	        String sql = "select user_id, email, enabled, password, phone, username,cv from users where enabled = 0 ";
 	        SQLQuery query =sessionFactory.getCurrentSession().createSQLQuery(sql);
 	        query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 	        List<User> results = query.list() ; 
@@ -78,13 +79,25 @@ public class UserImpDAO{
 		@Transactional
 		public void actvate(int id) {
 			
-			
+			/*
 			Session st = sessionFactory.getCurrentSession() ; 
-			String queryForRemoveUsers  = "UPDATE `users` SET `enabled` = '1' WHERE `users`.`user_id` = " + id ;			
+			String queryForRemoveUsers  = "UPDATE `users` SET `enabled` = b'1' WHERE `users`.`user_id` = " + id ;			
 			SQLQuery query1 =sessionFactory.getCurrentSession().createSQLQuery(queryForRemoveUsers); 
 			query1.executeUpdate() ; 
 	        st.flush();
-	
+		*/
+			String sqlQuery = "UPDATE users SET enabled = 1 WHERE user_id = " + id ;		
+	        System.err.println(sqlQuery);
+	        Transaction transaction = null;
+	        
+	        	int result = -1;
+	        	
+	            Session session = sessionFactory.getCurrentSession();
+	            transaction = session.beginTransaction();
+	            SQLQuery query = session.createSQLQuery(sqlQuery);
+	            result = query.executeUpdate();
+	            transaction.commit();
+	            
 	        
 		        
 		}
